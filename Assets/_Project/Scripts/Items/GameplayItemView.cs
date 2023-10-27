@@ -9,28 +9,50 @@ namespace _Project.Scripts.Items
 {
     public interface IGameplayItemView: IDestroyed
     {
-        event Action<PointerEventData> BeginDragged;
-        event Action<PointerEventData> Dragged;
-        event Action<PointerEventData> EndDragged; 
+        event Action<Vector2> BeginDragged;
+        event Action<Vector2> Dragged;
+        event Action<Vector2> EndDragged; 
         bool IsKinematic { set;  }
         bool IsTrigger { set; }
         float Rotation { set; }
         Sprite Sprite { set; }
         Transform CollidersAnchor { get; }
+        Vector2 SpriteOffset { set; }
+        
+        //TODO: Remove when the gizmo isn't needed.
+        IGameplayItemController Controller { set; }
+
     }
     
     public sealed class GameplayItemView: MonoBehaviour, IGameplayItemView, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
+        [Header("References")]
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private Transform _colliderAnchor;
+        [Header("Config")]
+        [SerializeField] private float _distanceToCamera;
         [Header("Debug")]
+        //TODO: Remove this variables when the gizmo isn't used. 
         [SerializeField] private Vector2 _offset;
+        private IItemData _itemData;
+        //
 
-        public event Action<PointerEventData> BeginDragged;
-        public event Action<PointerEventData> Dragged;
-        public event Action<PointerEventData> EndDragged;
+        private IGameplayItemController _controller;
+
+        public event Action<Vector2> BeginDragged;
+        public event Action<Vector2> Dragged;
+        public event Action<Vector2> EndDragged;
         
         public event Action Destroyed;
+
+        private Camera _mainCamera;
+
+        private void Awake()
+        {
+            _mainCamera = Camera.main;
+        }
+
         public void Destroy()
         {
             Destroy(gameObject);
@@ -68,9 +90,23 @@ namespace _Project.Scripts.Items
             set => _spriteRenderer.sprite = value;
         }
 
-        public Transform CollidersAnchor => transform;
+        public Vector2 SpriteOffset
+        {
+            set
+            {
+                _spriteRenderer.gameObject.transform.localPosition = value;
+                _colliderAnchor.localPosition = value;
+            }
+        }
 
-        private void OnDrawGizmosSelected()
+        public Transform CollidersAnchor => _colliderAnchor;
+        
+        
+        public IGameplayItemController Controller
+        {
+            set => _controller = value;
+        }
+        private void OnDrawGizmos()
         {
             if (_itemData != null)
             {
@@ -92,40 +128,48 @@ namespace _Project.Scripts.Items
             Gizmos.color = color;
             foreach (var itemTile in tiles)
             {
-                var tilePosition = _offset + itemTile;
-                var tileOffset = transform.TransformVector( new Vector3(tilePosition.x, tilePosition.y));
-                Gizmos.DrawSphere(transform.position + tileOffset, 0.1f);
+                var tileOffset = _controller.ToGlobalTile(itemTile);
+                Gizmos.DrawSphere(transform.position +  new Vector3(tileOffset.x, tileOffset.y), 0.1f);
             }
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            BeginDragged?.Invoke(eventData);
+            var worldPoint = EventDataToPoint(eventData);
+            BeginDragged?.Invoke(worldPoint);
         }
-
+        
         public void OnDrag(PointerEventData eventData)
         {
-            Dragged?.Invoke(eventData);
+            var worldPoint = EventDataToPoint(eventData);
+            Dragged?.Invoke(worldPoint);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            EndDragged?.Invoke(eventData);
+            var worldPoint = EventDataToPoint(eventData);
+            EndDragged?.Invoke(worldPoint);
+        }
+
+        private Vector2 EventDataToPoint(in PointerEventData eventData)
+        {
+            var screenPosition = new Vector3(eventData.position.x, eventData.position.y, _distanceToCamera);
+            var worldPosition = _mainCamera.ScreenToWorldPoint(screenPosition);
+            var point = new Vector2(worldPosition.x, worldPosition.y);
+            return point;
         }
 
         private void OnDestroy()
         {
             Destroyed?.Invoke();
         }
-
-        [SerializeField] private IItemData _itemData;
-        
+      
+        //TODO: Remove this when the gizmo isn't used. 
         [Conditional("UNITY_EDITOR")]
         public void SetItemData(IItemData itemData)
         {
-            _offset = itemData.Offset;
+            _offset = itemData.SpriteOffset;
             _itemData = itemData;
-
         }
         
         

@@ -6,7 +6,7 @@ namespace _Project.Scripts.Items
     public interface IItemData
     {
         string Name { get; }
-        Vector2 Offset { get; }
+        Vector2 SpriteOffset { get; }
         Sprite Sprite { get; }
         CollidersHolder CollidersHolderPrefab { get; }
 
@@ -28,7 +28,7 @@ namespace _Project.Scripts.Items
         [SerializeField] private CollidersHolder _colliderPrefab;
 
         public string Name => _name;
-        public Vector2 Offset => _offset;
+        public Vector2 SpriteOffset => _offset;
         public Sprite Sprite => _sprite;
         public CollidersHolder CollidersHolderPrefab => _colliderPrefab;
         public IReadOnlyCollection<Vector2Int> ItemTiles => _itemTiles;

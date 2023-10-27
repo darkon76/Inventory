@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   _name: Dagger
-  _offset: {x: 0, y: 0.5}
+  _offset: {x: 0, y: -0.5}
   _itemTiles:
   - {x: 0, y: 0}
   - {x: 0, y: -1}

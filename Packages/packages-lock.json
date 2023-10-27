@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6f5d81854456a351ff99a5d8dca85d49cf6f6a0d"
+    },
+    "com.marlonruvalcaba.pooling": {
+      "version": "https://github.com/darkon76/UnityPooling.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2203f1ba43144b59db758f1b9f902cd203f705fc"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 1,

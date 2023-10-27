@@ -16,13 +16,13 @@ namespace _Project.Scripts.Editor.Tests
         public IEnumerator EditorUtility()
         {
             var controller = CreateItem();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             controller.RotateCounter();
-            yield return new WaitForSeconds(10.5f);
+            yield return new WaitForSeconds(2f);
             controller.RotateCounter();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             controller.RotateWise();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             controller.Dispose();
             yield return new WaitForSeconds(1);
         }
@@ -31,15 +31,8 @@ namespace _Project.Scripts.Editor.Tests
         {
             _itemDataSO = AssetDatabase.LoadAssetAtPath<ItemData>("Assets/_Project/Assets/Items/BackPack2x2.asset");
             _gameplayItemViewPrefab = AssetDatabase.LoadAssetAtPath<GameplayItemView>("Assets/_Project/Assets/Items/GameplayItem.prefab");
-            
-            var view = GameObject.Instantiate(_gameplayItemViewPrefab);
-            var gameplayView = view;
-            gameplayView.SetItemData(_itemDataSO);
-            view.OnDrag(new PointerEventData(EventSystem.current));
-            view.name = _itemDataSO.Name;
-            var gameplayItemController = new GameplayItemController(view, _itemDataSO);
-            gameplayItemController.Populate();
-            return gameplayItemController;
+
+            return ItemFactory.CreateItemFromData(_gameplayItemViewPrefab, _itemDataSO);
         }
     }
 }
