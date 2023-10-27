@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624aac29911445799b873438bc696d49, type: 3}
+  m_Name: Dagger
+  m_EditorClassIdentifier: 
+  _name: Dagger
+  _offset: {x: 0, y: 0.5}
+  _itemTiles:
+  - {x: 0, y: 0}
+  - {x: 0, y: -1}
+  _activationTiles:
+  - {x: 0, y: 1}
+  - {x: 0, y: -2}
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: -1, y: -1}
+  - {x: 1, y: -1}
+  _specialTiles: []
+  _sprite: {fileID: 21300000, guid: 3875214fb644af641a481c4d4b5d4f97, type: 3}
+  _colliderPrefab: {fileID: -7693668512764768934, guid: f0f3194f9d7429d43acf5b97681fc3d1, type: 3}
