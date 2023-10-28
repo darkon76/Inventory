@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Project.Scripts.Inventory.ScriptableObjects;
 using ObjectPool;
 using UnityEngine;
 
@@ -10,16 +11,20 @@ namespace _Project.Scripts.Inventory
         private readonly Dictionary<PreviewSlotState, PoolObjectContainer<SlotPreviewView>> previewSlotPool = new();
 
         public InventorySlotPreviewHandler(
-            Transform parentTransform, IList<SlotPreviewView> slotPreviewViewsPrefabs)
+            Transform parentTransform, IPreviewSlotData previewSlotData)
         {
-            var index = 0;
+
             var previewSlotStateValues = Enum.GetValues(typeof(PreviewSlotState));
-            if (previewSlotStateValues.Length != slotPreviewViewsPrefabs.Count)
-                Debug.LogError(
-                    $"{nameof(InventorySlotPreviewHandler)} - Constructor: slotPreviewViesPrefabs lenght is different than the PreviewSlotState enum");
+            var previewPrefabs = previewSlotData.GetSlotPreviewViews();
+
+            var index = 0;
             foreach (PreviewSlotState previewSlotState in previewSlotStateValues)
             {
-                var pool = new PoolObjectContainer<SlotPreviewView>(slotPreviewViewsPrefabs[index], parentTransform, 4);
+                if (previewSlotState == PreviewSlotState.Invalid)
+                {
+                    continue;
+                }
+                var pool = new PoolObjectContainer<SlotPreviewView>(previewPrefabs[index], parentTransform, 4);
                 previewSlotPool[previewSlotState] = pool;
                 index++;
             }

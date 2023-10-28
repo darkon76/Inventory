@@ -2,12 +2,12 @@
 
 namespace _Project.Scripts.Inventory
 {
-    public interface IGridIndicatorView
+    public interface ISlotPreviewView
     {
         
     }
     
-    public class SlotPreviewView: MonoBehaviour, IGridIndicatorView
+    public class SlotPreviewView: MonoBehaviour, ISlotPreviewView
     {
         
     }
