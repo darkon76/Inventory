@@ -5,6 +5,7 @@
         Invalid,
         Free,
         Blocked,
-        Incomplete
+        Incomplete,
+        Floating,
     }
 }

@@ -1,26 +1,40 @@
-﻿using ObjectPool;
+﻿using System;
+using System.Collections.Generic;
+using ObjectPool;
 using UnityEngine;
-
 
 namespace _Project.Scripts.Inventory
 {
     public class InventorySlotPreviewHandler
     {
-        private readonly PoolObjectContainer<SlotPreviewView> freeSlotPool;
-        private readonly PoolObjectContainer<SlotPreviewView> blockedSlotPool;
-        private readonly PoolObjectContainer<SlotPreviewView> incompleteSlotPool;
+        private readonly Dictionary<PreviewSlotState, PoolObjectContainer<SlotPreviewView>> previewSlotPool = new();
 
         public InventorySlotPreviewHandler(
-            Transform parentTransform,
-            SlotPreviewView freeSlotPrefab, 
-            SlotPreviewView blockedSlotPrefab,
-            SlotPreviewView incompleteSlotPrefab)
+            Transform parentTransform, IList<SlotPreviewView> slotPreviewViewsPrefabs)
         {
-            freeSlotPool = new PoolObjectContainer<SlotPreviewView>(freeSlotPrefab, parentTransform, 4);
-            blockedSlotPool = new PoolObjectContainer<SlotPreviewView>(blockedSlotPrefab, parentTransform, 4);
-            incompleteSlotPool = new PoolObjectContainer<SlotPreviewView>(incompleteSlotPrefab, parentTransform, 4);
+            var index = 0;
+            var previewSlotStateValues = Enum.GetValues(typeof(PreviewSlotState));
+            if (previewSlotStateValues.Length != slotPreviewViewsPrefabs.Count)
+                Debug.LogError(
+                    $"{nameof(InventorySlotPreviewHandler)} - Constructor: slotPreviewViesPrefabs lenght is different than the PreviewSlotState enum");
+            foreach (PreviewSlotState previewSlotState in previewSlotStateValues)
+            {
+                var pool = new PoolObjectContainer<SlotPreviewView>(slotPreviewViewsPrefabs[index], parentTransform, 4);
+                previewSlotPool[previewSlotState] = pool;
+                index++;
+            }
         }
-        
-       // public bool ValidPosition(IInventoryGridController gridController, )
+
+        public bool TryGetSlotPreviewView(PreviewSlotState previewSlotState, out SlotPreviewView slotPreviewView)
+        {
+            if (!previewSlotPool.TryGetValue(previewSlotState, out var pool))
+            {
+                slotPreviewView = null;
+                return false;
+            }
+
+            slotPreviewView = pool.Get();
+            return true;
+        }
     }
 }
