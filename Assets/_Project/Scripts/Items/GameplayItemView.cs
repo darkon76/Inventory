@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using _Project.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Utils;
 
-namespace _Project.Scripts.Items
+namespace Items
 {
     public interface IGameplayItemView: IDestroyed
     {

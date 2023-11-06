@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _Project.Scripts.Utils
+namespace Utils
 {
     public interface IDestroyed
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace _Project.Scripts.Utils
+namespace Utils
 {
     public static class Vector2ExtensionMethods
     {

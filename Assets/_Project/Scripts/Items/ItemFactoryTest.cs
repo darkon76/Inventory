@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Items
+namespace Items
 {
     public class ItemFactoryTest:MonoBehaviour
     {

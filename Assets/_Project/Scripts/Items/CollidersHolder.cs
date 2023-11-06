@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace _Project.Scripts.Items
+namespace Items
 {
+    [Serializable]
     public class CollidersHolder: MonoBehaviour
     {
         

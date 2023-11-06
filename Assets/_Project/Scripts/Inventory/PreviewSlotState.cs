@@ -1,4 +1,4 @@
-﻿namespace _Project.Scripts.Inventory
+﻿namespace Inventory
 {
     public enum PreviewSlotState
     {

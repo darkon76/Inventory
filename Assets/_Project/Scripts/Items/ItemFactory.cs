@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-namespace _Project.Scripts.Items
+
+namespace Items
 {
     public sealed class ItemFactory
     {

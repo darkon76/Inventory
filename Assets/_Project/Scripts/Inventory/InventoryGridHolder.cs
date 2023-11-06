@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace _Project.Scripts.Inventory
+namespace Inventory
 {
     [Serializable]
     public sealed class InventoryGridHolder

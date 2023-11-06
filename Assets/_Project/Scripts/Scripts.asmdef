@@ -2,7 +2,11 @@
     "name": "Scripts",
     "rootNamespace": "",
     "references": [
-        "GUID:343c05c06aca62640b8a0aede3e1048b"
+        "GUID:343c05c06aca62640b8a0aede3e1048b",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:593a5b492d29ac6448b1ebf7f035ef33",
+        "GUID:84651a3751eca9349aac36a66bba901b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,7 +14,9 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
+    "defineConstraints": [
+        "UNITASK_ADDRESSABLE_SUPPORT"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }

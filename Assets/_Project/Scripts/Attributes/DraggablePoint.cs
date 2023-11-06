@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Attributes
+namespace Attributes
 {
     public sealed class DraggablePoint : PropertyAttribute
     {

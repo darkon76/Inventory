@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Inventory
+namespace Inventory
 {
     public interface IInventoryGridView
     {

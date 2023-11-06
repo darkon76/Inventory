@@ -1,8 +1,8 @@
 using System;
-using _Project.Scripts.Utils;
 using UnityEngine;
+using Utils;
 
-namespace _Project.Scripts.Items
+namespace Items
 {
     public interface IGameplayItemController:IDisposable
     {

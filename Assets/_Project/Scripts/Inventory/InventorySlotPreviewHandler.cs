@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Project.Scripts.Inventory.ScriptableObjects;
+using Inventory.ScriptableObjects;
 using ObjectPool;
 using UnityEngine;
 
-namespace _Project.Scripts.Inventory
+namespace Inventory
 {
     public class InventorySlotPreviewHandler
     {
         private readonly Dictionary<PreviewSlotState, PoolObjectContainer<SlotPreviewView>> previewSlotPool = new();
 
-        public InventorySlotPreviewHandler(
-            Transform parentTransform, IPreviewSlotData previewSlotData)
+        public InventorySlotPreviewHandler(Transform parentTransform, IPreviewSlotData previewSlotData)
         {
-
             var previewSlotStateValues = Enum.GetValues(typeof(PreviewSlotState));
             var previewPrefabs = previewSlotData.GetSlotPreviewViews();
 

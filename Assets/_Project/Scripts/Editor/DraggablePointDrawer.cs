@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using _Project.Scripts.Attributes;
+using Attributes;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Project.Scripts.Editor
+namespace Editor
 {
     [CustomEditor(typeof(MonoBehaviour), true)]
     public class DraggablePointDrawer : UnityEditor.Editor 

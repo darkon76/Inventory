@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using Items.AssetReference;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using Utils;
 
-namespace _Project.Scripts.Items
+namespace Items
 {
     public interface IItemData
     {
@@ -26,6 +31,12 @@ namespace _Project.Scripts.Items
         
         [SerializeField] private Sprite _sprite;
         [SerializeField] private CollidersHolder _colliderPrefab;
+        
+        [SerializeField]
+        private AssetReferenceSprite _spriteRef;
+
+        [SerializeField]
+        private ColliderHolderReference _colliderHolderRef;
 
         public string Name => _name;
         public Vector2 SpriteOffset => _offset;
@@ -34,5 +45,6 @@ namespace _Project.Scripts.Items
         public IReadOnlyCollection<Vector2Int> ItemTiles => _itemTiles;
         public IReadOnlyCollection<Vector2Int> ActivationTiles => _activationTiles;
         public IReadOnlyCollection<Vector2Int> SpecialTiles => _specialTiles;
+       
     }
 }

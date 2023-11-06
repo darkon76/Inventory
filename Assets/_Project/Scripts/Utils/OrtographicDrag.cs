@@ -1,8 +1,8 @@
-﻿namespace _Project.Scripts.Utils
-{
-    using UnityEngine;
-    using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
+namespace Utils
+{
     public class OrtographicDrag: MonoBehaviour, IDragHandler
     {
         private Camera _mainCamera;

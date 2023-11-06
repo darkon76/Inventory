@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Project.Scripts.Inventory.ScriptableObjects
+namespace Inventory.ScriptableObjects
 {
     public interface IPreviewSlotData
     {

@@ -23,3 +23,14 @@ MonoBehaviour:
   _specialTiles: []
   _sprite: {fileID: 21300000, guid: 7de44640f5c43d445a990353e274e35a, type: 3}
   _colliderPrefab: {fileID: -7693668512764768934, guid: 99a9580994f247648ba7f686fcfa3868, type: 3}
+  _spriteRef:
+    m_AssetGUID: 3875214fb644af641a481c4d4b5d4f97
+    m_SubObjectName: Dagger
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 0
+  _colliderHolderRef:
+    m_AssetGUID: 99a9580994f247648ba7f686fcfa3868
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

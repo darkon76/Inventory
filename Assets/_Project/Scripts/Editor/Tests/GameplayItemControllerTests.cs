@@ -1,11 +1,10 @@
 ﻿using System.Collections;
-using _Project.Scripts.Items;
+using Items;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.TestTools;
 
-namespace _Project.Scripts.Editor.Tests
+namespace Editor.Tests
 {
     public class GameplayItemControllerTests
     {
