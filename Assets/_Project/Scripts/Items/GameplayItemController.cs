@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
@@ -12,6 +13,8 @@ namespace Items
         void SendToChest();
 
         Vector2Int ToGlobalTile(Vector2Int tilePosition);
+
+        ICollection<Vector2Int> GetAllTiles();
     }
     
     public sealed class GameplayItemController:IGameplayItemController
@@ -106,6 +109,20 @@ namespace Items
             var globalPosition = matrix.MultiplyVector(new Vector3(tilePosition.x, tilePosition.y));
             return globalPosition.RoundToVector2Int();
         }
+
+        public ICollection<Vector2Int> GetAllTiles()
+        {
+            GetMatrix(out var matrix);
+            List<Vector2Int> globalTilesPositions = new ();
+            foreach (var tilePosition in _itemData.ItemTiles)
+            {
+                var globalPosition = matrix.MultiplyVector(new Vector3(tilePosition.x, tilePosition.y));
+                globalTilesPositions.Add(globalPosition.RoundToVector2Int());
+            }
+
+            return globalTilesPositions;
+        }
+
         private void GetMatrix(out Matrix4x4 matrix)
         {
             var position = new Vector3(_currentPosition.x, _currentPosition.y);

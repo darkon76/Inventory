@@ -31,11 +31,11 @@ namespace Inventory
         {
             if (position.x > _size.x || position.x < 0)
             {
-                return PreviewSlotState.Floating;
+                return PreviewSlotState.Invalid;
             }
             else if (position.y > _size.y || position.y < 0)
             {
-                return PreviewSlotState.Floating;
+                return PreviewSlotState.Invalid;
             }
             
             var isFree = _freeSlots.Get2DValue(_size, position);
