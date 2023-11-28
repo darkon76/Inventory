@@ -8,6 +8,5 @@ namespace Inventory
     }
     public class InventoryGridView: MonoBehaviour, IInventoryGridView
     {
-        
     }
 }
