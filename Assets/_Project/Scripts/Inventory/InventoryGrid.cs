@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 using Utils.GizmoHelper;
@@ -16,6 +17,7 @@ namespace Inventory
 
         [SerializeField, HideInInspector]
         private bool[] _freeSlots;
+        
 
         public InventoryGrid()
         {

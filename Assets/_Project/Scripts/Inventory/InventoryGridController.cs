@@ -12,7 +12,7 @@ namespace Inventory
     
     public class InventoryGridController: IInventoryGridController
     {
-        private static readonly Vector2Int INVENTORY_SIZE = new Vector2Int(10, 5);
+        private static readonly Vector2Int INVENTORY_SIZE = new (10, 5);
         private InventoryGrid _mainGrid;
         private InventoryGrid _bagsGrid;
         
@@ -28,7 +28,7 @@ namespace Inventory
             _bagsGrid = new InventoryGrid(INVENTORY_SIZE, new bool[size]);
         }
 
-        public PreviewSlotState GetItemSlotPreview(Vector2Int slot)
+        public PreviewSlotState GetSlotPreview(Vector2Int slot)
         {
             var mainGridPreview = _mainGrid.CheckSlot(slot);
             switch (mainGridPreview)
@@ -50,9 +50,14 @@ namespace Inventory
             return bagGridPreview;
         }
 
-        public void SetItem(GameplayItemController item, Vector2Int slot)
+        public void SetItem(IGameplayItemController item, Vector2Int slot)
         {
             //TODO:
+            var tiles = item.GetAllTiles();
+            foreach (var tile in tiles)
+            {
+                
+            }
         }
         
     }

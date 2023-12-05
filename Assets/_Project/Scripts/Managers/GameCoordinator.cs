@@ -21,7 +21,6 @@ namespace Managers
         {
             _gridController = new InventoryGridController();
             _gridController.Initialize();
-
         }
     }
 }

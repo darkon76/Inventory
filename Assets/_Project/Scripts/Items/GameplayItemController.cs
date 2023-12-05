@@ -16,7 +16,7 @@ namespace Items
 
         ICollection<Vector2Int> GetAllTiles();
     }
-    
+    [Serializable]
     public sealed class GameplayItemController:IGameplayItemController
     {
         private IGameplayItemView _view;
